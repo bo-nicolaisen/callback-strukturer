@@ -2,31 +2,14 @@
 
 // basic MVC setup
 const mainContent = document.getElementById('content');
-setupStatics();
 
 
-// Setup static event listeners and elements (model code)
-function setupStatics() {
-console.log('setupStatics called');
+
+
 
     const newListButton = document.getElementById('newListButton');
-    newListButton.addEventListener('click', newListCallback);
-      listView();
-}
-
-
-
-// Callback for creating a new list (model code)
-function newListCallback() {
-    console.log('create new list');
-    newListCreationView();
-}
-
-
-// view code to create a new list creation view
-function newListCreationView() {
-    // Get the content element
-    const content = document.getElementById('content');
+    newListButton.addEventListener('click',()=>{
+ const content = document.getElementById('content');
     
     // Clear the content
     content.innerHTML = '';
@@ -50,7 +33,10 @@ function newListCreationView() {
     okButton.textContent = 'OK';
     okButton.addEventListener('click', () => {
         console.log('OK clicked, list name:', input.value);
-        listView();
+       mainContent.innerHTML = '';
+    const list = document.createElement('div');
+    list.innerHTML = '<h2>List View</h2><ul></ul>';
+    mainContent.appendChild(list);
     });
     
     // Create Cancel button
@@ -58,7 +44,10 @@ function newListCreationView() {
     cancelButton.textContent = 'Cancel';
     cancelButton.addEventListener('click', () => {
         console.log('Cancel clicked');
-      listView();
+      mainContent.innerHTML = '';
+    const list = document.createElement('div');
+    list.innerHTML = '<h2>List View</h2><ul></ul>';
+    mainContent.appendChild(list);
     });
     
     // Append all elements to the section
@@ -69,21 +58,16 @@ function newListCreationView() {
     
     // Append section to content
     content.appendChild(section);
-}
+    });
 
- 
-
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------
-// List view part of the view code that generates list views to show user the saved lists
-function listView(){
-    
-    mainContent.innerHTML = '';
+        mainContent.innerHTML = '';
     const list = document.createElement('div');
     list.innerHTML = '<h2>List View</h2><ul></ul>';
     mainContent.appendChild(list);
-}
+
+
+
+
+
+ 
 
