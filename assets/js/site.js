@@ -1,9 +1,12 @@
 
-
-
+// basic MVC setup
 const mainContent = document.getElementById('content');
+setupStatics();
 
+
+// Setup static event listeners and elements (model code)
 function setupStatics() {
+console.log('setupStatics called');
 
     const newListButton = document.getElementById('newListButton');
     newListButton.addEventListener('click', newListCallback);
@@ -12,15 +15,15 @@ function setupStatics() {
 
 
 
-
+// Callback for creating a new list (model code)
 function newListCallback() {
     console.log('create new list');
-    newListView();
+    newListCreationView();
 }
 
 
-
-function newListView() {
+// view code to create a new list creation view
+function newListCreationView() {
     // Get the content element
     const content = document.getElementById('content');
     
@@ -74,7 +77,7 @@ function newListView() {
 
 
 //---------------------------------------------------------------------------------------------------------------
-// List view part of the view code that generates lists
+// List view part of the view code that generates list views to show user the saved lists
 function listView(){
     
     mainContent.innerHTML = '';
