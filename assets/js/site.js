@@ -1,5 +1,9 @@
 
-// basic MVC setup
+// basic MVC with app state setup
+
+// #region init functions
+let appState="listView"
+
 const mainContent = document.getElementById('content');
 setupStatics();
 
@@ -8,20 +12,66 @@ setupStatics();
 function setupStatics() {
 console.log('setupStatics called');
 
-    const newListButton = document.getElementById('newListButton');
-    newListButton.addEventListener('click', newListCallback);
+    const newButton = document.getElementById('newListButton');
+    newListButton.addEventListener('click', newCallback);
       listView();
 }
 
+ // #endregion
 
+// #region callbacks
+//---------------------------------------------------------------------------------------------------------------------
+//- Callbacks with switch to handle different functions and appState
+//---------------------------------------------------------------------------------------------------------------------
 
-// Callback for creating a new list (model code)
-function newListCallback() {
-    console.log('create new list');
+// Callback for creating a new list (model code) with switch and appState
+function newCallback() {
+
+    switch (appState) {
+        case "listView":
+               console.log('create new list');
     newListCreationView();
+            break;
+
+             case "itemView":
+               console.log('create new item');
+    newItemCreationView();
+            break;
+    
+        default:
+            console.error('Unknown app state:', appState);
+            break;
+    }
+   
 }
 
+// List click callback function with switch for different actions on the list
+function listClickCallback(action) {
+    switch (action) {
+        case 'showList':
+            console.log(' list clicked show items');
+            appState = "itemView";
+            break;
 
+             case 'deleteList':
+            console.log(' list delete clicked');
+            break;
+
+            case 'editList':
+            console.log(' list edit clicked');
+            break;
+
+        default:
+            console.error('Unknown action:', action);
+            break;
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
+// #endregion
+
+// #region view functions
 // view code to create a new list creation view
 function newListCreationView() {
     // Get the content element
@@ -70,7 +120,6 @@ function newListCreationView() {
     content.appendChild(section);
 }
 
- 
 
 
 
@@ -82,7 +131,8 @@ function listView(){
     
     mainContent.innerHTML = '';
     const list = document.createElement('div');
-    list.innerHTML = '<h2>List View</h2><ul></ul>';
+    list.innerHTML = '<h2 onclick="listClickCallback(\'showList\')">List View</h2><button onclick="listClickCallback(\'deleteList\')">Delete</button><button onclick="listClickCallback(\'editList\')">Edit</button>';
     mainContent.appendChild(list);
 }
 
+// #endregion
