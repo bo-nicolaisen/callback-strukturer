@@ -1,10 +1,6 @@
-// write cool JS hwere!!
+// spaghetti monster code
 
-// basic MVC setup
 const mainContent = document.getElementById('content');
-
-
-
 
 
     const newListButton = document.getElementById('newListButton');
