@@ -1,4 +1,3 @@
-// spaghetti monster code
 
 const mainContent = document.getElementById('content');
 
